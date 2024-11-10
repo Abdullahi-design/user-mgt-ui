@@ -3,7 +3,7 @@ export default function UserCard({ user }) {
   return (
     <div className="bg-white md:text-base text-sm shadow-md rounded-lg p-4 space-y-2">
       <img
-        src={user.photo || '/assets/images/avatars/user.jpg'}
+        src={user.photo || '/assets/images/avatars/user.png'}
         alt="Profile"
         className={`w-12 md:w-16 h-12 md:h-16 rounded-full border-2 border-${user.color}-500`}
       />

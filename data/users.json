@@ -1,8 +1,8 @@
 [
   {
     "id": 1,
-    "name": "Alice Johnson",
-    "email": "alice.johnson@example.com",
+    "name": "Adams David",
+    "email": "adams@test.com",
     "role": "Admin",
     "status": "Active",
     "photo": "/assets/images/avatars/img-1.jpg",
@@ -10,8 +10,8 @@
   },
   {
     "id": 2,
-    "name": "Bob Smith",
-    "email": "bob.smith@example.com",
+    "name": "Ela Smith",
+    "email": "ela@test.com",
     "role": "User",
     "status": "Inactive",
     "photo": "/assets/images/avatars/img-2.jpg",
@@ -19,11 +19,118 @@
   },
   {
     "id": 3,
-    "name": "Charlie Davis",
-    "email": "charlie.davis@example.com",
-    "role": "Guest",
+    "name": "Sylvia Davis",
+    "email": "johhana@test.com",
+    "role": "User",
     "status": "Active",
     "photo": "/assets/images/avatars/img-3.jpg",
     "color": "yellow"
+  },
+  {
+    "id": 4,
+    "name": "Johhana Davis",
+    "email": "johhana@test.com",
+    "role": "User",
+    "status": "Active",
+    "photo": "/assets/images/avatars/img-1.jpg",
+    "color": "pruple"
+  },
+  {
+    "id": 5,
+    "name": "Sylvia Davis",
+    "email": "johhana@test.com",
+    "role": "User",
+    "status": "Inactive",
+    "photo": "/assets/images/avatars/img-2.jpg",
+    "color": "green"
+  },
+  {
+    "id": 6,
+    "name": "Johhana Davis",
+    "email": "johhana@test.com",
+    "role": "User",
+    "status": "Active",
+    "photo": "/assets/images/avatars/img-3.jpg",
+    "color": "yellow"
+  },
+  {
+    "id": 7,
+    "name": "Sylvia Davis",
+    "email": "johhana@test.com",
+    "role": "User",
+    "status": "Active",
+    "photo": "/assets/images/avatars/img-1.jpg",
+    "color": "pruple"
+  },
+  {
+    "id": 8,
+    "name": "Johhana Davis",
+    "email": "johhana@test.com",
+    "role": "User",
+    "status": "Inactive",
+    "photo": "/assets/images/avatars/img-2.jpg",
+    "color": "green"
+  },
+  {
+    "id": 9,
+    "name": "Sylvia Davis",
+    "email": "johhana@test.com",
+    "role": "User",
+    "status": "Active",
+    "photo": "/assets/images/avatars/img-3.jpg",
+    "color": "yellow"
+  },
+  {
+    "id": 10,
+    "name": "Johhana Davis",
+    "email": "johhana@test.com",
+    "role": "User",
+    "status": "Active",
+    "photo": "/assets/images/avatars/user.png",
+    "color": "red"
+  },
+  {
+    "id": 11,
+    "name": "Sylvia Davis",
+    "email": "johhana@test.com",
+    "role": "User",
+    "status": "Active",
+    "photo": "/assets/images/avatars/img-1.jpg",
+    "color": "pruple"
+  },
+  {
+    "id": 12,
+    "name": "Sylvia Davis",
+    "email": "johhana@test.com",
+    "role": "User",
+    "status": "Inactive",
+    "photo": "/assets/images/avatars/img-2.jpg",
+    "color": "green"
+  },
+  {
+    "id": 13,
+    "name": "Johhana Davis",
+    "email": "johhana@test.com",
+    "role": "User",
+    "status": "Active",
+    "photo": "/assets/images/avatars/img-3.jpg",
+    "color": "yellow"
+  },{
+    "id": 14,
+    "name": "Johhana Davis",
+    "email": "johhana@test.com",
+    "role": "User",
+    "status": "Active",
+    "photo": "/assets/images/avatars/img-1.jpg",
+    "color": "pruple"
+  },
+  {
+    "id": 15,
+    "name": "Sylvia Davis",
+    "email": "johhana@test.com",
+    "role": "User",
+    "status": "Active",
+    "photo": "/assets/images/avatars/user.png",
+    "color": "red"
   }
 ]

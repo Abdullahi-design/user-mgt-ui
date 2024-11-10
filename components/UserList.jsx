@@ -45,6 +45,7 @@ export default function UserList({ users }) {
     purple: "border-purple-500",
     green: "border-green-500",
     yellow: "border-yellow-500",
+    red: "border-red-500",
   };
 
   return (
@@ -59,7 +60,7 @@ export default function UserList({ users }) {
         </button>
       </div>
 
-      <div className="hidden md:block overflow-x-auto">
+      <div className="hidden md:block overflow-y-auto overflow-x-hidden max-h-[77vh]">
         <table className="min-w-full bg-white shadow-md rounded-lg">
           <thead className="bg-gray-100">
             <tr>
@@ -76,7 +77,7 @@ export default function UserList({ users }) {
               <tr key={user.id} className="text-center">
                 <td className="py-2 px-4 border-b">
                   <img
-                    src={user.photo || '/assets/images/avatars/user.jpg'}
+                    src={user.photo || '/assets/images/avatars/user.png'}
                     alt={`${user.name}'s profile`}
                     className={`w-10 h-10 rounded-full border-2 ${
                       colorMap[user.color] || "border-gray-500"

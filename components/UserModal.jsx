@@ -62,7 +62,7 @@ export default function UserModal({ user, isEditMode, onClose, onSubmit }) {
                 className="w-full p-2 border rounded"
               />
             </div>
-            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
+            <button type="submit" className="bg-purple-500 hover:bg-purple-700 text-white px-4 py-2 rounded">
               Save Changes
             </button>
           </form>
@@ -70,7 +70,7 @@ export default function UserModal({ user, isEditMode, onClose, onSubmit }) {
             <div className="bg-white shadow-lg rounded-lg p-6 max-w-sm mx-auto">
                 <div className="flex items-center space-x-4 mb-4">
                     <img
-                    src={user.photo || '/assets/images/avatars/user.jpg'}
+                    src={user.photo || '/assets/images/avatars/user.png'}
                     alt={`${user.name}'s profile`}
                     className="w-16 h-16 rounded-full border-2 border-purple-500"
                     />
