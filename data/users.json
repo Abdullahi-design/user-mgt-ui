@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "name": "Alice Johnson",
+    "email": "alice.johnson@example.com",
+    "role": "Admin",
+    "status": "Active",
+    "photo": "/assets/images/avatars/img-1.jpg",
+    "color": "pruple"
+  },
+  {
+    "id": 2,
+    "name": "Bob Smith",
+    "email": "bob.smith@example.com",
+    "role": "User",
+    "status": "Inactive",
+    "photo": "/assets/images/avatars/img-2.jpg",
+    "color": "green"
+  },
+  {
+    "id": 3,
+    "name": "Charlie Davis",
+    "email": "charlie.davis@example.com",
+    "role": "Guest",
+    "status": "Active",
+    "photo": "/assets/images/avatars/img-3.jpg",
+    "color": "yellow"
+  }
+]
