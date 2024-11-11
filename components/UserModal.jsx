@@ -1,23 +1,40 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { MdOutlineClose } from "react-icons/md";
+import SubmitButton from './SubmitButton';
+import SuccessModal from './SuccessModal';
+import { editUser } from '@/utils/action';
 
-export default function UserModal({ user, isEditMode, onClose, onSubmit }) {
-  const [formData, setFormData] = useState({});
+export default function UserModal({ user, isEditMode, onClose }) {
+  const nameRef = useRef();
+  const emailRef = useRef();
+  const statusRef = useRef();
+  const [successMessage, setSuccessMessage] = useState('');
 
-  useEffect(() => {
-    setFormData(user || {});
-  }, [user]);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit(formData);
+
+    // Manually construct form data
+    const formData = {
+      id: user.id,
+      name: nameRef.current.value,
+      email: emailRef.current.value,
+      status: statusRef.current.value,
+    };
+
+    console.log("Submitting formData:", formData);
+
+    // Call editUser function with the constructed formData
+    const result = await editUser(formData);
+
+    if (result?.message) {
+      setSuccessMessage(result.message);
+      setTimeout(() => {
+        setSuccessMessage(''); // Clear message after a short delay
+        onClose(); // Close modal
+      }, 2000); // Close the modal after 2 seconds
+    }
   };
 
   return (
@@ -37,8 +54,8 @@ export default function UserModal({ user, isEditMode, onClose, onSubmit }) {
               <input
                 type="text"
                 name="name"
-                value={formData.name || ''}
-                onChange={handleChange}
+                defaultValue={user?.name || ''}
+                ref={nameRef}
                 className="w-full p-2 border rounded"
               />
             </div>
@@ -47,55 +64,62 @@ export default function UserModal({ user, isEditMode, onClose, onSubmit }) {
               <input
                 type="email"
                 name="email"
-                value={formData.email || ''}
-                onChange={handleChange}
+                defaultValue={user?.email || ''}
+                ref={emailRef}
                 className="w-full p-2 border rounded"
               />
             </div>
             <div>
-              <label className="block text-gray-700">Role</label>
-              <input
-                type="text"
-                name="role"
-                value={formData.role || ''}
-                onChange={handleChange}
+              <label className="block text-gray-700">Status</label>
+              <select
+                name="status"
+                defaultValue={user?.status || 'Active'}
+                ref={statusRef}
                 className="w-full p-2 border rounded"
-              />
+              >
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
             </div>
-            <button type="submit" className="bg-purple-500 hover:bg-purple-700 text-white px-4 py-2 rounded">
-              Save Changes
-            </button>
+            <SubmitButton />
           </form>
         ) : (
-            <div className="bg-white shadow-lg rounded-lg p-6 max-w-sm mx-auto">
-                <div className="flex items-center space-x-4 mb-4">
-                    <img
-                    src={user.photo || '/assets/images/avatars/user.png'}
-                    alt={`${user.name}'s profile`}
-                    className="w-16 h-16 rounded-full border-2 border-purple-500"
-                    />
-                    <div>
-                    <h2 className="text-xl font-semibold text-gray-800">{user.name}</h2>
-                    <p className="text-gray-500">{user.email}</p>
-                    </div>
-                </div>
-                <div className="space-y-2">
-                    <div className="flex items-center">
-                    <span className="bg-gray-200 text-gray-600 text-xs font-semibold rounded-full px-2 py-1 mr-2">
-                        Role
-                    </span>
-                    <p className="text-gray-700">{user.role}</p>
-                    </div>
-                    <div className="flex items-center">
-                    <span className="bg-gray-200 text-gray-600 text-xs font-semibold rounded-full px-2 py-1 mr-2">
-                        Status
-                    </span>
-                    <p className={`text-xs font-semibold ${user.status === 'Active' ? 'text-green-500' : 'text-red-500'}`}>
-                        {user.status}
-                    </p>
-                    </div>
-                </div>
+          <div className="bg-white shadow-lg rounded-lg p-6 max-w-sm mx-auto">
+            <div className="flex items-center space-x-4 mb-4">
+              <img
+                src={user.photo || '/assets/images/avatars/user.png'}
+                alt={`${user.name}'s profile`}
+                className="w-16 h-16 rounded-full border-2 border-purple-500"
+              />
+              <div>
+                <h2 className="text-xl font-semibold text-gray-800">{user.name}</h2>
+                <p className="text-gray-500">{user.email}</p>
+              </div>
             </div>
+            <div className="space-y-2">
+              <div className="flex items-center">
+                <span className="bg-gray-200 text-gray-600 text-xs font-semibold rounded-full px-2 py-1 mr-2">
+                  Role
+                </span>
+                <p className="text-gray-700">{user.role}</p>
+              </div>
+              <div className="flex items-center">
+                <span className="bg-gray-200 text-gray-600 text-xs font-semibold rounded-full px-2 py-1 mr-2">
+                  Status
+                </span>
+                <p className={`text-xs font-semibold ${user.status === 'Active' ? 'text-green-500' : 'text-red-500'}`}>
+                  {user.status}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Success message */}
+        {successMessage && (
+          <div className="mt-4 text-green-600 text-center font-semibold">
+            <SuccessModal msg={successMessage}/>
+          </div>
         )}
       </div>
     </div>

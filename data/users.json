@@ -154,5 +154,19 @@
     "email": "abdullahismohd3000@gmail.com",
     "role": "Admin",
     "status": "Inactive"
+  },
+  {
+    "id": 19,
+    "name": "Abdullahi Sani Mohammed",
+    "email": "abdullahismohd3000@gmail.com",
+    "role": "Admin",
+    "status": "Active"
+  },
+  {
+    "id": 20,
+    "name": "Abdullahi Sani Mohammed",
+    "email": "abdullahismohd3000@gmail.com",
+    "role": "Admin",
+    "status": "Active"
   }
 ]
