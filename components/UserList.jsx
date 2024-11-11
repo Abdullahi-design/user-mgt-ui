@@ -27,7 +27,6 @@ export default function UserList({ users }) {
   };
 
   const handleToggleDropdown = (userId) => {
-    // Toggle the dropdown for the selected user
     setOpenDropdown(openDropdown === userId ? null : userId);
   };
 
@@ -130,11 +129,17 @@ export default function UserList({ users }) {
       {/* Cards for smaller screens */}
       <div className="grid grid-cols-1 gap-4 md:hidden overflow-y-auto overflow-x-hidden max-h-[77vh]">
         {users.map((user) => (
-          <UserCard key={user.id} user={user} />
+          <UserCard
+            key={user.id}
+            user={user}
+            openDropdown={openDropdown}
+            handleToggleDropdown={handleToggleDropdown}
+            handleOpenUserModal={handleOpenUserModal}
+          />
         ))}
       </div>
 
-      {/* Modal for Adding New User */}
+      {/* Modals for adding and viewing/editing users */}
       {showAddUserModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">

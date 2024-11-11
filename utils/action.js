@@ -3,15 +3,20 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { z } from "zod";
+import { v4 as uuidv4 } from 'uuid';
 
 export async function createUser(prevState, formData) {
     const filePath = path.join(process.cwd(), 'data', 'users.json');
+    const uploadDir = path.join(process.cwd(), 'public', 'uploads');
+
+    // Ensure the upload directory exists
+    await fs.mkdir(uploadDir, { recursive: true });
 
     const schema = z.object({
         name: z.string().min(1).max(25).nonempty(),
-        email: z.string().email().nonempty('enter a valid email'),
-        role: z.string().nonempty('select a role'),
-        status: z.string().nonempty('select status'),
+        email: z.string().email().nonempty('Enter a valid email'),
+        role: z.string().nonempty('Select a role'),
+        status: z.string().nonempty('Select status'),
     });
 
     const data = schema.parse({
@@ -21,13 +26,26 @@ export async function createUser(prevState, formData) {
         status: formData.get('status'),
     });
 
+    // Handle the photo file if it exists
+    const photoFile = formData.get('photo'); // Access the file from FormData
+    let photoPath = null;
+    if (photoFile && photoFile.name) {
+        const photoName = `${uuidv4()}-${photoFile.name}`;
+        photoPath = path.join('/uploads', photoName); // Path to store in JSON
+        const fullPhotoPath = path.join(uploadDir, photoName);
+
+        // Write the file to the uploads directory
+        const buffer = Buffer.from(await photoFile.arrayBuffer());
+        await fs.writeFile(fullPhotoPath, buffer);
+    }
+
     try {
         // Read the existing users from the file
         const fileData = await fs.readFile(filePath, 'utf-8');
         const users = JSON.parse(fileData);
     
-        // Add the new user to the array
-        const newUser = { id: users.length + 1, ...data };
+        // Add the new user with the photo path
+        const newUser = { id: users.length + 1, ...data, photo: photoPath };
         users.push(newUser);
     
         // Write the updated users array back to the file
