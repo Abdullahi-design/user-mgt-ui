@@ -26,7 +26,6 @@ export async function createUser(prevState, formData) {
         status: formData.get('status'),
     });
 
-    // Handle the photo file if it exists
     const photoFile = formData.get('photo'); // Access the file from FormData
     let photoPath = null;
     if (photoFile && photoFile.name) {
@@ -70,9 +69,8 @@ export async function editUser(formData) {
         status: z.string().nonempty('Select status'),
     });
 
-    // Parse and validate the data directly from formData (assuming formData is a plain object)
     const data = schema.parse({
-        id: formData.id, // Parse ID as integer
+        id: formData.id, 
         name: formData.name,
         email: formData.email,
         status: formData.status,

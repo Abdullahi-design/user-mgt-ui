@@ -1,5 +1,3 @@
-// components/UserCard.js
-
 export default function UserCard({ user, openDropdown, handleToggleDropdown, handleOpenUserModal }) {
   return (
     <div className="bg-white md:text-base text-sm shadow-md rounded-lg p-4 space-y-2 relative">
@@ -15,7 +13,6 @@ export default function UserCard({ user, openDropdown, handleToggleDropdown, han
         {user.status}
       </p>
       
-      {/* Action button with dropdown */}
       <div className="relative inline-block text-left mt-2">
         <button
           onClick={(e) => {

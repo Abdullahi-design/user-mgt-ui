@@ -6,11 +6,11 @@ import UserModal from './UserModal';
 import { MdOutlineClose } from "react-icons/md";
 
 export default function UserList({ users }) {
-  const [showAddUserModal, setShowAddUserModal] = useState(false); // For "Add New User" modal
-  const [showUserModal, setShowUserModal] = useState(false); // For Edit/View user modal
+  const [showAddUserModal, setShowAddUserModal] = useState(false); 
+  const [showUserModal, setShowUserModal] = useState(false); 
   const [selectedUser, setSelectedUser] = useState(null);
   const [isEditMode, setIsEditMode] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState(null); // Track which dropdown is open
+  const [openDropdown, setOpenDropdown] = useState(null);
 
   const handleOpenAddUserModal = () => setShowAddUserModal(true);
   const handleCloseAddUserModal = () => setShowAddUserModal(false);
@@ -36,7 +36,6 @@ export default function UserList({ users }) {
 
   const handleSubmit = (updatedUser) => {
     console.log("Updated User Data:", updatedUser);
-    // Add code to update the user in the JSON database here
     handleCloseUserModal();
   };
 
@@ -95,7 +94,7 @@ export default function UserList({ users }) {
                   <div className="relative inline-block text-left">
                     <button
                       onClick={(e) => {
-                        e.stopPropagation(); // Prevent triggering handleClickOutside
+                        e.stopPropagation(); 
                         handleToggleDropdown(user.id);
                       }}
                       className="bg-gray-200 text-gray-700 px-3 py-1 text-sm rounded focus:outline-none"

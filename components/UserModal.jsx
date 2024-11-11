@@ -25,15 +25,14 @@ export default function UserModal({ user, isEditMode, onClose }) {
 
     console.log("Submitting formData:", formData);
 
-    // Call editUser function with the constructed formData
     const result = await editUser(formData);
 
     if (result?.message) {
       setSuccessMessage(result.message);
       setTimeout(() => {
-        setSuccessMessage(''); // Clear message after a short delay
-        onClose(); // Close modal
-      }, 2000); // Close the modal after 2 seconds
+        setSuccessMessage(''); 
+        onClose();
+      }, 2000); 
     }
   };
 
