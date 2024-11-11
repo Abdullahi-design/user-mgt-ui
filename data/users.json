@@ -115,7 +115,8 @@
     "status": "Active",
     "photo": "/assets/images/avatars/img-3.jpg",
     "color": "yellow"
-  },{
+  },
+  {
     "id": 14,
     "name": "Johhana Davis",
     "email": "johhana@test.com",
@@ -132,5 +133,26 @@
     "status": "Active",
     "photo": "/assets/images/avatars/user.png",
     "color": "red"
+  },
+  {
+    "id": 16,
+    "name": "Abdullahi Sani Mohammed",
+    "email": "abdullahismohd3000@gmail.com",
+    "role": "Admin",
+    "status": "Active"
+  },
+  {
+    "id": 17,
+    "name": "Abdullahi Sani Mohammed",
+    "email": "abdullahismohd3000@gmail.com",
+    "role": "User",
+    "status": "Active"
+  },
+  {
+    "id": 18,
+    "name": "Abdullahi Sani Mohammed",
+    "email": "abdullahismohd3000@gmail.com",
+    "role": "Admin",
+    "status": "Inactive"
   }
 ]
