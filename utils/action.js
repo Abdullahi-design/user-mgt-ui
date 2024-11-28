@@ -27,6 +27,8 @@ export async function createUser(prevState, formData) {
     });
 
     const photoFile = formData.get('photo'); // Access the file from FormData
+    const userEmail = formData.get('email');
+    
     let photoPath = null;
     if (photoFile && photoFile.name) {
         const photoName = `${uuidv4()}-${photoFile.name}`;
@@ -41,20 +43,26 @@ export async function createUser(prevState, formData) {
     try {
         // Read the existing users from the file
         const fileData = await fs.readFile(filePath, 'utf-8');
-        const users = JSON.parse(fileData);
+        const users = JSON.parse(fileData);        
+
+        const checkUserEmail = users.find((user) => userEmail == user.email);
+        console.log(checkUserEmail)
+        if(!checkUserEmail){
     
-        // Add the new user with the photo path
-        const newUser = { id: users.length + 1, ...data, photo: photoPath };
-        users.push(newUser);
-    
-        // Write the updated users array back to the file
-        await fs.writeFile(filePath, JSON.stringify(users, null, 2), 'utf-8');
-    
-        return { message: `Created user ${data.name}` };
+            // Add the new user with the photo path
+            const newUser = { id: users.length + 1, ...data, photo: photoPath };
+            users.push(newUser);
+        
+            // Write the updated users array back to the file
+            await fs.writeFile(filePath, JSON.stringify(users, null, 2), 'utf-8');
+        
+            return { successMsg: `Created user ${data.name}` };
+        } 
+        return { errorMsg: `user already exist`}
     
     } catch (error) {
-        console.error(`The error message: ${error.message}`);
-        return { message: `Failed to create user` };
+        console.error(`The error successMsg: ${error.message}`);
+        return { errorMsg: `Failed to create user` };
     }
 }
 
@@ -85,7 +93,7 @@ export async function editUser(formData) {
         const userIndex = users.findIndex((user) => user.id === data.id);
         if (userIndex === -1) {
             console.log(`User with ID ${data.id} not found`);
-            return { message: `User not found` };
+            return { errorMsg: `User not found` };
         }
 
         // Update the user’s information
@@ -93,10 +101,10 @@ export async function editUser(formData) {
 
         // Write the updated users array back to the file
         await fs.writeFile(filePath, JSON.stringify(users, null, 2), 'utf-8');
-        return { message: `Updated user ${data.name}` };
+        return { successMsg: `Updated user ${data.name}` };
     
     } catch (error) {
         console.error(`Error while updating user: ${error.message}`);
-        return { message: `Failed to update user` };
+        return { errorMsg: `Failed to update user` };
     }
 }

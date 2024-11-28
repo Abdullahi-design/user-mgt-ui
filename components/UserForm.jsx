@@ -1,15 +1,16 @@
 "use client";
 
-import { useRef } from 'react';
+import { useActionState, useRef } from 'react';
 import InputField from './InputField';
 import SelectField from './SelectField';
 import SubmitButton from './SubmitButton';
 import SuccessModal from './SuccessModal';
+import ErrorModal from './ErrorModal';
 import { createUser } from '../utils/action';
-import { useActionState } from 'react';
 
 const initialState = {
-  message: "",
+  successMsg: "",
+  errorMsg: "",
 };
 
 export default function UserForm() {
@@ -74,9 +75,14 @@ export default function UserForm() {
 
       <SubmitButton />
 
-      {state?.message && (
+      {state?.successMsg && (
         <div className="mt-4">
-          <SuccessModal msg={state?.message} />
+          <SuccessModal msg={state?.successMsg} />
+        </div>
+      )}
+      {state?.errorMsg && (
+        <div className="mt-4">
+          <ErrorModal msg={state?.errorMsg} />
         </div>
       )}
     </form>
