@@ -5,7 +5,7 @@ import path from 'path';
 import { z } from "zod";
 import { v4 as uuidv4 } from 'uuid';
 
-export async function createUser(prevState, formData) {
+export async function createUser(formData) {
     const filePath = path.join(process.cwd(), 'data', 'users.json');
     const uploadDir = path.join(process.cwd(), 'public', 'uploads');
 

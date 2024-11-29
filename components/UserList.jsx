@@ -146,7 +146,7 @@ export default function UserList({ users }) {
               <h2 className="text-xl font-semibold mb-4">Add New User</h2>
               <MdOutlineClose onClick={handleCloseAddUserModal} className="w-6 h-6 border border-red-600 p-1 rounded-full text-red-400 hover:text-red-600 cursor-pointer"/>
             </div>
-            <UserForm onSubmit={(newUser) => console.log(newUser)} />
+            <UserForm onSubmit={(newUser) => console.log(newUser)} onClose={handleCloseAddUserModal} />
           </div>
         </div>
       )}
