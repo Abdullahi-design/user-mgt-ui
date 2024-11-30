@@ -5,12 +5,14 @@ import { MdOutlineClose } from "react-icons/md";
 import SubmitButton from './SubmitButton';
 import SuccessModal from './SuccessModal';
 import { editUser } from '@/utils/action';
+import ErrorModal from './ErrorModal';
 
 export default function UserModal({ user, isEditMode, onClose }) {
   const nameRef = useRef();
   const emailRef = useRef();
   const statusRef = useRef();
   const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState(""); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,12 +29,15 @@ export default function UserModal({ user, isEditMode, onClose }) {
 
     const result = await editUser(formData);
 
-    if (result?.message) {
-      setSuccessMessage(result.message);
+    console.log('result', result);
+
+    if (result?.successMsg) {
+      setSuccessMessage(result.successMsg);
       setTimeout(() => {
-        setSuccessMessage(''); 
-        onClose();
-      }, 2000); 
+        onClose(); 
+      }, 2000);
+    } else if (result?.errorMsg) {
+      setErrorMessage(result.errorMsg);
     }
   };
 
@@ -116,8 +121,13 @@ export default function UserModal({ user, isEditMode, onClose }) {
 
         {/* Success message */}
         {successMessage && (
-          <div className="mt-4 text-green-600 text-center font-semibold">
+          <div className="mt-4">
             <SuccessModal msg={successMessage}/>
+          </div>
+        )}
+        {errorMessage && (
+          <div className="mt-4">
+            <ErrorModal msg={errorMessage} />
           </div>
         )}
       </div>

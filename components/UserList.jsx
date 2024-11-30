@@ -67,12 +67,12 @@ export default function UserList({ users }) {
               <th className="py-2 px-4 border-b font-medium text-gray-600">Email</th>
               <th className="py-2 px-4 border-b font-medium text-gray-600">Role</th>
               <th className="py-2 px-4 border-b font-medium text-gray-600">Status</th>
-              <th className="py-2 px-4 border-b font-medium text-gray-600">Actions</th>
+              <th className="py-2 px-4 border-b font-medium text-gray-600">Edit</th>
             </tr>
           </thead>
           <tbody>
             {users.map((user) => (
-              <tr key={user.id} className="text-center">
+              <tr key={user.id} className="text-center cursor-pointer hover:bg-gray-100" onClick={() => handleOpenUserModal(user, false)}>
                 <td className="py-2 px-4 border-b">
                   <img
                     src={user.photo || '/assets/images/avatars/user.png'}
@@ -93,30 +93,15 @@ export default function UserList({ users }) {
                 <td className="py-2 px-4 border-b relative">
                   <div className="relative inline-block text-left">
                     <button
-                      onClick={(e) => {
-                        e.stopPropagation(); 
-                        handleToggleDropdown(user.id);
-                      }}
-                      className="bg-gray-200 text-gray-700 px-3 py-1 text-sm rounded focus:outline-none"
-                    >
-                      Action
+                        onClick={(e) => {
+                          e.stopPropagation(); 
+                          // handleToggleDropdown(user.id);
+                          handleOpenUserModal(user, true)
+                        }}
+                        className="cursor-pointer bg-gray-200 text-gray-700 px-3 py-1 text-sm rounded focus:outline-none"
+                      >
+                        ✎ Edit
                     </button>
-                    {openDropdown === user.id && (
-                      <div className="absolute right-0 mt-2 w-28 bg-white border border-gray-200 rounded shadow-lg z-10">
-                        <button
-                          onClick={() => handleOpenUserModal(user, false)}
-                          className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        >
-                          👁 View
-                        </button>
-                        <button
-                          onClick={() => handleOpenUserModal(user, true)}
-                          className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        >
-                          ✎ Edit
-                        </button>
-                      </div>
-                    )}
                   </div>
                 </td>
               </tr>
@@ -132,6 +117,7 @@ export default function UserList({ users }) {
             key={user.id}
             user={user}
             openDropdown={openDropdown}
+            onClose={handleCloseUserModal}
             handleToggleDropdown={handleToggleDropdown}
             handleOpenUserModal={handleOpenUserModal}
           />
